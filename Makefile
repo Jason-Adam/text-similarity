@@ -1,14 +1,21 @@
+.PHONY: build
 build:
-	go build -o bin/similarityapi cmd/api/main.go
+	go build \
+		-o bin/similarityapi \
+		cmd/api/main.go
 
+.PHONY: run
 run:
 	go run cmd/api/main.go
 
+.PHONY: test
 test:
-	go test -v ./test/...
+	sh bin/test.sh
 
-build-docker: build
-	docker build . -t api-rest
+.PHONY: build-docker
+build-docker:
+	sh bin/build-docker.sh
 
+.PHONY: run-docker
 run-docker: build-docker
-	docker run -p 3000:3000 api-rest
+	sh bin/run-docker.sh

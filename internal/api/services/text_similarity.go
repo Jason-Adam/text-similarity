@@ -12,7 +12,7 @@ func NewSimilarityService() *SimilarityService {
 	return &SimilarityService{}
 }
 
-// Calculate returns the similarity score
+// Calculate returns the normalized (0-1) similarity score
 func (s *SimilarityService) Calculate(t *models.TextPair) (*models.SimilarityScore, error) {
 
 	edits := make([][]int, len(t.SecondText)+1)

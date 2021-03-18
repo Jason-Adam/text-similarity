@@ -4,7 +4,8 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jason-adam/text-similarity/internal/pkg/config"
+	"github.com/jason-adam/text-similarity/internal/api/config"
+	"github.com/jason-adam/text-similarity/internal/api/router"
 )
 
 func setConfiguration(configPath string) {
@@ -19,7 +20,7 @@ func Run(configPath string) {
 	}
 	setConfiguration(configPath)
 	conf := config.GetConfig()
-	// TODO: web := router.Setup()
+	web := router.Setup()
 	log.Println("text similarity running on port " + conf.Server.Port)
-	// TODO: _ = web.Run(":" + conf.Server.Port)
+	_ = web.Run(":" + conf.Server.Port)
 }

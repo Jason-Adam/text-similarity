@@ -1,6 +1,8 @@
 package services
 
 import (
+	"errors"
+
 	"github.com/jason-adam/text-similarity/internal/api/models"
 )
 
@@ -14,6 +16,12 @@ func NewSimilarityService() *SimilarityService {
 
 // Calculate returns the normalized (0-1) similarity score
 func (s *SimilarityService) Calculate(t *models.TextPair) (*models.SimilarityScore, error) {
+
+	if t.FirstText == "" || t.SecondText == "" {
+		return &models.SimilarityScore{
+			Score: 0.0,
+		}, errors.New("cannot pass empty string")
+	}
 
 	edits := make([][]int, len(t.SecondText)+1)
 	for y := range edits {

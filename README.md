@@ -41,5 +41,12 @@ You should see an output like this:
 }
 ```
 
+## Testing  
+The current test suite needs improvement, but it can be run with:  
+
+```bash  
+make test
+```  
+
 ## Space & Time Complexity  
 The Levenschtein Distance Algorithm runs in `O(nm) time | O(nm)` space, where `n` is the size of the first string and `m` is the size of the second string.
